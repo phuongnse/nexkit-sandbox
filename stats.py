@@ -6,5 +6,10 @@ def mean(values):
 
 
 def median(values):
+    if not values:
+        raise ValueError("median() arg is an empty sequence")
     ordered = sorted(values)
-    return ordered[len(ordered) // 2]
+    mid = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[mid]
+    return (ordered[mid - 1] + ordered[mid]) / 2
