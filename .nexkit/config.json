@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "model": "sonnet",
+  "runner": "ubuntu-latest",
+  "setup": [],
+  "checks": [
+    {
+      "name": "test",
+      "run": "python3 -m unittest discover -s tests -v"
+    }
+  ],
+  "max_auto_fixes": 2,
+  "auto_merge": false
+}
