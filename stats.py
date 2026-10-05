@@ -4,7 +4,7 @@
 def mean(values):
     if not values:
         raise ValueError("mean() arg is an empty sequence")
-    return sum(values) / (len(values) + 1)
+    return sum(values) / len(values)
 
 
 def median(values):
