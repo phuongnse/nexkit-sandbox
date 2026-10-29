@@ -1,0 +1,64 @@
+# Throwaway: checks NexKit PR #199's GraphQL isRequired with a real Actions token.
+name: verify-199
+on:
+  pull_request:
+    branches: [verify-199-base]
+permissions: {}
+jobs:
+  required-check:
+    runs-on: ubuntu-24.04
+    permissions:
+      statuses: write
+    steps:
+      - name: Fail a required commit status and this required check run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/$GITHUB_REPOSITORY/statuses/${{ github.event.pull_request.head.sha }}" \
+            -f state=failure -f context=required-status -f description="fails on purpose"
+          exit 1
+  probe:
+    needs: required-check
+    if: always()
+    runs-on: ubuntu-24.04
+    # The same permissions as pipeline.yml's report job.
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      statuses: write
+      actions: write
+      checks: read
+    steps:
+      - run: git clone -q --depth 1 -b ccr-a9f51831-i51w2s https://github.com/phuongnse/nexkit kit
+      - name: Probe
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          BASE: ${{ github.event.pull_request.base.ref }}
+        run: |
+          cd kit && python3 - <<'PY'
+          import json, os, sys
+          from nexkit.github import GitHub, GitHubError
+          from nexkit import report
+          gh = GitHub()
+          pr, head, base = int(os.environ["PR"]), os.environ["HEAD"], os.environ["BASE"]
+          print("required_checks(base):", gh.required_checks(base))
+          raw = gh.graphql(__import__("nexkit.github").github.REQUIRED_QUERY,
+                           {"owner": gh.repository.split("/")[0], "name": gh.repository.split("/")[1], "number": pr})
+          print("GraphQL raw:", json.dumps(raw, indent=1))
+          contexts = gh.required_contexts(pr)
+          print("required_contexts(pr):", contexts)
+          try:
+              gh.merge(pr, head)
+              print("merge: MERGED (unexpected)")
+          except GitHubError as exc:
+              print("merge refused:", exc.status, exc)
+          print("merge_state:", report.merge_state(gh, pr))
+          failed, pending, complete = report.required_checks(gh, base, pr, head)
+          print("report.required_checks:", failed, pending, complete)
+          ok = failed == ["required-check", "required-status"] and not complete
+          print("RESULT:", "PASS" if ok else "FAIL")
+          sys.exit(0 if ok else 1)
+          PY
