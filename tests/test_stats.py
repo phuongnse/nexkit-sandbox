@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median, mode, spread, variance
+from stats import mean, median, midrange, mode, spread, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -50,6 +50,17 @@ class StatsTests(unittest.TestCase):
     def test_variance_empty(self):
         with self.assertRaises(ValueError) as ctx:
             variance([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_midrange(self):
+        self.assertEqual(midrange([1, 5, 3]), 3.0)
+
+    def test_midrange_single_value(self):
+        self.assertEqual(midrange([2]), 2)
+
+    def test_midrange_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            midrange([])
         self.assertIn("empty", str(ctx.exception))
 
 

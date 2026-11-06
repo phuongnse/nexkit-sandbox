@@ -10,3 +10,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `mode(values)` - the most common value; on a tie, the smallest of them. Raises `ValueError` if `values` is empty.
 - `spread(values)` - the largest value minus the smallest. Raises `ValueError` if `values` is empty.
 - `variance(values)` - population variance: the mean of the squared differences from the mean. Raises `ValueError` if `values` is empty.
+- `midrange(values)` - the average of the smallest and largest value. Raises `ValueError` if `values` is empty.
