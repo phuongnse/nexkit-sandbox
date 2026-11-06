@@ -20,6 +20,7 @@ def median(values):
 
 
 def mode(values):
+    """Return the most common value; on a tie, return the smallest of them."""
     if not values:
         raise ValueError("mode() arg is an empty sequence")
     counts = Counter(values)
