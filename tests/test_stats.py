@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median, midrange, mode, spread, variance
+from stats import mean, median, midrange, mode, spread, stdev, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -69,6 +69,14 @@ class StatsTests(unittest.TestCase):
     def test_midrange_empty(self):
         with self.assertRaises(ValueError) as ctx:
             midrange([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_stdev(self):
+        self.assertEqual(stdev([2, 4, 4, 4, 5, 5, 7, 9]), 2.0)
+
+    def test_stdev_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            stdev([])
         self.assertIn("empty", str(ctx.exception))
 
 

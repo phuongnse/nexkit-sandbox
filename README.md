@@ -11,3 +11,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `spread(values)` - the largest value minus the smallest. Raises `ValueError` if `values` is empty.
 - `variance(values)` - population variance: the mean of the squared differences from the mean. Raises `ValueError` if `values` is empty.
 - `midrange(values)` - the average of the smallest and largest value. Raises `ValueError` if `values` is empty.
+- `stdev(values)` - population standard deviation: the square root of the variance. Raises `ValueError` if `values` is empty.

@@ -1,5 +1,6 @@
 """Small statistics helpers."""
 
+import math
 from collections import Counter
 
 
@@ -53,3 +54,10 @@ def midrange(values):
     if not values:
         raise ValueError("midrange() arg is an empty sequence")
     return (min(values) + max(values)) / 2
+
+
+def stdev(values):
+    """Return the population standard deviation: the square root of the variance."""
+    if not values:
+        raise ValueError("stdev() arg is an empty sequence")
+    return math.sqrt(variance(values))
