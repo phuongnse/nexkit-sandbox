@@ -22,7 +22,7 @@
     "max_auto_rounds": 2
   },
   "merge": {
-    "auto": false
+    "auto": true
   },
   "github_app": {
     "slug": "nexkit-agent",
@@ -42,5 +42,23 @@
         "tests/test_stats.py"
       ]
     }
-  ]
+  ],
+  "conflicts": {
+    "auto_resolve": true
+  },
+  "close_parent_issues": true,
+  "autopilot": {
+    "enabled": true,
+    "scope": "milestone",
+    "answer": "recommended",
+    "last_in_milestone_label": "last",
+    "trusted_workflows": [
+      "audit.yml"
+    ]
+  },
+  "review": {
+    "checklist": [
+      "Every function in stats.py is listed in README.md with a one-line description"
+    ]
+  }
 }

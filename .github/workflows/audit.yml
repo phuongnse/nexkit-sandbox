@@ -1,0 +1,36 @@
+name: Audit
+
+# Opens an issue for NexKit autopilot, which takes it because this workflow is in
+# autopilot.trusted_workflows and the marker names this run.
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: The issue's title
+        required: true
+        type: string
+      body:
+        description: The issue's text
+        required: true
+        type: string
+      milestone:
+        description: The milestone's title
+        required: false
+        type: string
+
+permissions:
+  issues: write
+
+jobs:
+  open:
+    runs-on: ubuntu-24.04
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: ${{ inputs.title }}
+          BODY: ${{ inputs.body }}
+          MILESTONE: ${{ inputs.milestone }}
+        run: |
+          marker="<!-- nexkit:workflow audit.yml $GITHUB_RUN_ID -->"
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" \
+            --body "$(printf '%s\n%s' "$marker" "$BODY")" ${MILESTONE:+--milestone "$MILESTONE"}
