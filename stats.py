@@ -1,5 +1,7 @@
 """Small statistics helpers."""
 
+from collections import Counter
+
 
 def mean(values):
     if not values:
@@ -15,3 +17,11 @@ def median(values):
     if len(ordered) % 2:
         return ordered[mid]
     return (ordered[mid - 1] + ordered[mid]) / 2
+
+
+def mode(values):
+    if not values:
+        raise ValueError("mode() arg is an empty sequence")
+    counts = Counter(values)
+    best = max(counts.values())
+    return min(v for v, c in counts.items() if c == best)
