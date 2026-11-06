@@ -41,3 +41,10 @@ def variance(values):
         raise ValueError("variance() arg is an empty sequence")
     m = mean(values)
     return sum((v - m) ** 2 for v in values) / len(values)
+
+
+def midrange(values):
+    """Return the mean of the smallest and largest value."""
+    if not values:
+        raise ValueError("midrange() arg is an empty sequence")
+    return (min(values) + max(values)) / 2
