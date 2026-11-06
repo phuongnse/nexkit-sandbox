@@ -51,10 +51,26 @@
     "enabled": true,
     "scope": "milestone",
     "answer": "recommended",
-    "last_in_milestone_label": "last",
     "trusted_workflows": [
       "audit.yml"
-    ]
+    ],
+    "priority": [
+      "nexkit:ci",
+      "nexkit:dependabot",
+      "bug",
+      "nexkit:flaky"
+    ],
+    "labels": {
+      "last": {
+        "wave": 1
+      },
+      "docs": {
+        "wave": 2
+      },
+      "on-hold": {
+        "hold": true
+      }
+    }
   },
   "review": {
     "checklist": [
