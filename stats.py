@@ -4,9 +4,14 @@ from collections import Counter
 
 
 def mean(values):
-    if not values:
+    total = 0
+    count = 0
+    for v in values:
+        total += v
+        count += 1
+    if count == 0:
         raise ValueError("mean() arg is an empty sequence")
-    return sum(values) / len(values)
+    return total / count
 
 
 def median(values):
