@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Restores the caches in .nexkit/config.json, and saves them on main.
+      - uses: phuongnse/nexkit/cache@main
+      - name: Setup
+        run: |
+          mkdir -p ~/.cache/nexkit-sandbox
+          ls ~/.cache/nexkit-sandbox
+          date -u > ~/.cache/nexkit-sandbox/written-at
+      - run: python3 -m unittest discover -s tests -v

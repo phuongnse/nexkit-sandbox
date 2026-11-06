@@ -9,7 +9,9 @@
   },
   "agent": "claude",
   "model": "sonnet",
-  "setup": [],
+  "setup": [
+    "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox"
+  ],
   "checks": [
     {
       "name": "test",
@@ -29,5 +31,16 @@
   },
   "notify": [
     "phuongnse"
+  ],
+  "cache": [
+    {
+      "name": "sandbox",
+      "paths": [
+        "~/.cache/nexkit-sandbox"
+      ],
+      "key_files": [
+        "tests/test_stats.py"
+      ]
+    }
   ]
 }
