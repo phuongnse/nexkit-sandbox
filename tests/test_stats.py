@@ -12,6 +12,14 @@ class StatsTests(unittest.TestCase):
             mean([])
         self.assertIn("empty", str(ctx.exception))
 
+    def test_mean_generator(self):
+        self.assertEqual(mean(x for x in [1, 2, 3]), 2.0)
+
+    def test_mean_empty_iterator(self):
+        with self.assertRaises(ValueError) as ctx:
+            mean(iter([]))
+        self.assertIn("empty", str(ctx.exception))
+
     def test_median_odd(self):
         self.assertEqual(median([3, 1, 2]), 2)
 
