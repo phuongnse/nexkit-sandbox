@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median, mode, variance
+from stats import mean, median, mode, spread, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -31,6 +31,17 @@ class StatsTests(unittest.TestCase):
     def test_mode_empty(self):
         with self.assertRaises(ValueError) as ctx:
             mode([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_spread(self):
+        self.assertEqual(spread([1, 5, 3]), 4)
+
+    def test_spread_single_value(self):
+        self.assertEqual(spread([2]), 0)
+
+    def test_spread_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            spread([])
         self.assertIn("empty", str(ctx.exception))
 
     def test_variance(self):

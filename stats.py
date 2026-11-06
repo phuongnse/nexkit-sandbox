@@ -28,6 +28,13 @@ def mode(values):
     return min(v for v, c in counts.items() if c == best)
 
 
+def spread(values):
+    """Return the largest value minus the smallest."""
+    if not values:
+        raise ValueError("spread() arg is an empty sequence")
+    return max(values) - min(values)
+
+
 def variance(values):
     """Return the population variance: the mean of squared differences from the mean."""
     if not values:
