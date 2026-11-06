@@ -1,5 +1,13 @@
 {
   "version": 1,
+  "agents": {
+    "claude": {
+      "runtime": "claude-code",
+      "provider": "anthropic",
+      "oauth_token_secret": "CLAUDE_CODE_OAUTH_TOKEN"
+    }
+  },
+  "agent": "claude",
   "model": "sonnet",
   "setup": [],
   "checks": [
@@ -8,6 +16,18 @@
       "run": "python3 -m unittest discover -s tests -v"
     }
   ],
-  "max_auto_fixes": 2,
-  "auto_merge": false
+  "fix": {
+    "max_auto_rounds": 2
+  },
+  "merge": {
+    "auto": false
+  },
+  "github_app": {
+    "slug": "nexkit-agent",
+    "app_id_secret": "NEXKIT_APP_ID",
+    "private_key_secret": "NEXKIT_APP_PRIVATE_KEY"
+  },
+  "notify": [
+    "phuongnse"
+  ]
 }
