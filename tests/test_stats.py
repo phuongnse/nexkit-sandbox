@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median
+from stats import mean, median, mode
 
 
 class StatsTests(unittest.TestCase):
@@ -21,6 +21,17 @@ class StatsTests(unittest.TestCase):
     def test_median_empty(self):
         with self.assertRaises(ValueError):
             median([])
+
+    def test_mode(self):
+        self.assertEqual(mode([1, 2, 2, 3]), 2)
+
+    def test_mode_tie_returns_smallest(self):
+        self.assertEqual(mode([3, 1, 3, 1]), 1)
+
+    def test_mode_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            mode([])
+        self.assertIn("empty", str(ctx.exception))
 
 
 if __name__ == "__main__":
