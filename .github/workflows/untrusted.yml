@@ -1,0 +1,44 @@
+name: Untrusted
+
+# Plays someone autopilot does not trust: it opens or edits an issue as the Actions bot,
+# without the marker of a trusted workflow, so that `/nexkit trust` can be tried.
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: The issue to edit; empty opens a new one
+        required: false
+        type: string
+      title:
+        description: The issue's title
+        required: true
+        type: string
+      body:
+        description: The issue's text
+        required: true
+        type: string
+      milestone:
+        description: The milestone's title
+        required: false
+        type: string
+
+permissions:
+  issues: write
+
+jobs:
+  write:
+    runs-on: ubuntu-24.04
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ inputs.number }}
+          TITLE: ${{ inputs.title }}
+          BODY: ${{ inputs.body }}
+          MILESTONE: ${{ inputs.milestone }}
+        run: |
+          if [ -n "$NUMBER" ]; then
+            gh issue edit "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "$BODY" \
+              ${MILESTONE:+--milestone "$MILESTONE"}
+          fi

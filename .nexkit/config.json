@@ -54,7 +54,8 @@
     "last_in_milestone_label": "last",
     "trusted_workflows": [
       "audit.yml"
-    ]
+    ],
+    "dependabot": "high"
   },
   "review": {
     "checklist": [
