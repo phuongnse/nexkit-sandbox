@@ -26,3 +26,11 @@ def mode(values):
     counts = Counter(values)
     best = max(counts.values())
     return min(v for v, c in counts.items() if c == best)
+
+
+def variance(values):
+    """Return the population variance: the mean of squared differences from the mean."""
+    if not values:
+        raise ValueError("variance() arg is an empty sequence")
+    m = mean(values)
+    return sum((v - m) ** 2 for v in values) / len(values)
