@@ -26,3 +26,10 @@ def mode(values):
     counts = Counter(values)
     best = max(counts.values())
     return min(v for v, c in counts.items() if c == best)
+
+
+def spread(values):
+    """Return the largest value minus the smallest."""
+    if not values:
+        raise ValueError("spread() arg is an empty sequence")
+    return max(values) - min(values)
