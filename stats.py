@@ -61,3 +61,10 @@ def stdev(values):
     if not values:
         raise ValueError("stdev() arg is an empty sequence")
     return math.sqrt(variance(values))
+
+
+def sum_of_squares(values):
+    """Return the sum of each value squared."""
+    if not values:
+        raise ValueError("sum_of_squares() arg is an empty sequence")
+    return sum(v ** 2 for v in values)
