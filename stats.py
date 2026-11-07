@@ -77,3 +77,12 @@ def harmonic_mean(values):
     if any(v <= 0 for v in values):
         raise ValueError("harmonic_mean() requires positive values")
     return len(values) / sum(1 / v for v in values)
+
+
+def geometric_mean(values):
+    """Return the n-th root of the product of the values; all must be positive."""
+    if not values:
+        raise ValueError("geometric_mean() arg is an empty sequence")
+    if any(v <= 0 for v in values):
+        raise ValueError("geometric_mean() requires positive values")
+    return math.exp(sum(math.log(v) for v in values) / len(values))

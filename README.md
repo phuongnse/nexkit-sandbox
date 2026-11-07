@@ -14,3 +14,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `stdev(values)` - population standard deviation: the square root of the variance. Raises `ValueError` if `values` is empty.
 - `sum_of_squares(values)` - the sum of each value squared. Raises `ValueError` if `values` is empty.
 - `harmonic_mean(values)` - the number of values divided by the sum of their reciprocals. Raises `ValueError` if `values` is empty or any value is not positive.
+- `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.

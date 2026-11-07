@@ -1,6 +1,6 @@
 import unittest
 
-from stats import harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
+from stats import geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -89,6 +89,7 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             sum_of_squares([])
         self.assertIn("empty", str(ctx.exception))
+
     def test_harmonic_mean(self):
         self.assertEqual(harmonic_mean([1, 4, 4]), 2.0)
 
@@ -104,6 +105,19 @@ class StatsTests(unittest.TestCase):
     def test_harmonic_mean_negative(self):
         with self.assertRaises(ValueError):
             harmonic_mean([1, -2])
+
+    def test_geometric_mean(self):
+        self.assertAlmostEqual(geometric_mean([1, 4, 16]), 4.0)
+
+    def test_geometric_mean_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            geometric_mean([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_geometric_mean_not_positive(self):
+        for bad in ([1, 0], [2, -3]):
+            with self.assertRaises(ValueError):
+                geometric_mean(bad)
 
 
 if __name__ == "__main__":
