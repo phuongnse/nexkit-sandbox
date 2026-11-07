@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median, midrange, mode, spread, stdev, variance
+from stats import mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -77,6 +77,17 @@ class StatsTests(unittest.TestCase):
     def test_stdev_empty(self):
         with self.assertRaises(ValueError) as ctx:
             stdev([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_sum_of_squares(self):
+        self.assertEqual(sum_of_squares([1, 2, 3]), 14)
+
+    def test_sum_of_squares_negative(self):
+        self.assertEqual(sum_of_squares([-2, 3]), 13)
+
+    def test_sum_of_squares_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            sum_of_squares([])
         self.assertIn("empty", str(ctx.exception))
 
 
