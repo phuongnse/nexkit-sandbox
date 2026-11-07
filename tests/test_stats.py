@@ -1,6 +1,6 @@
 import unittest
 
-from stats import mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
+from stats import harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -89,6 +89,21 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             sum_of_squares([])
         self.assertIn("empty", str(ctx.exception))
+    def test_harmonic_mean(self):
+        self.assertEqual(harmonic_mean([1, 4, 4]), 2.0)
+
+    def test_harmonic_mean_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            harmonic_mean([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_harmonic_mean_zero(self):
+        with self.assertRaises(ValueError):
+            harmonic_mean([1, 0])
+
+    def test_harmonic_mean_negative(self):
+        with self.assertRaises(ValueError):
+            harmonic_mean([1, -2])
 
 
 if __name__ == "__main__":

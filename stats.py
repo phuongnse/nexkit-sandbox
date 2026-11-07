@@ -68,3 +68,12 @@ def sum_of_squares(values):
     if not values:
         raise ValueError("sum_of_squares() arg is an empty sequence")
     return sum(v ** 2 for v in values)
+
+
+def harmonic_mean(values):
+    """Return the number of values divided by the sum of their reciprocals."""
+    if not values:
+        raise ValueError("harmonic_mean() arg is an empty sequence")
+    if any(v <= 0 for v in values):
+        raise ValueError("harmonic_mean() requires positive values")
+    return len(values) / sum(1 / v for v in values)
