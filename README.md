@@ -17,3 +17,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.
 
 Shards of the e2e check: see ci/shards.txt.
+Each shard gets NEXKIT_SHARD.
