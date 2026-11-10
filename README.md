@@ -15,3 +15,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `sum_of_squares(values)` - the sum of each value squared. Raises `ValueError` if `values` is empty.
 - `harmonic_mean(values)` - the number of values divided by the sum of their reciprocals. Raises `ValueError` if `values` is empty or any value is not positive.
 - `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.
+- `trimmed_mean(values, k)` - the average after leaving out the `k` smallest and `k` largest values. Raises `ValueError` if `values` is empty, `k` is not a whole number 0 or more, or no values would be left.
