@@ -16,6 +16,15 @@
     {
       "name": "test",
       "run": "python3 -m unittest discover -s tests -v"
+    },
+    {
+      "name": "e2e",
+      "run": "scripts/e2e.sh",
+      "timeout_minutes": 10,
+      "shards": {
+        "count": "echo 'Counting shards from ci/shards.txt'; cat ci/shards.txt",
+        "max": 4
+      }
     }
   ],
   "fix": {
@@ -74,7 +83,12 @@
   },
   "review": {
     "checklist": [
-      "Every function in stats.py is listed in README.md with a one-line description"
+      "Every function in stats.py is listed in README.md with a one-line description",
+      {
+        "text": "The change adds no new public function to stats.py",
+        "person": true
+      }
     ]
-  }
+  },
+  "parallel_checks": true
 }
