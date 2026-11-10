@@ -15,3 +15,5 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `sum_of_squares(values)` - the sum of each value squared. Raises `ValueError` if `values` is empty.
 - `harmonic_mean(values)` - the number of values divided by the sum of their reciprocals. Raises `ValueError` if `values` is empty or any value is not positive.
 - `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.
+
+Shards of the e2e check: see ci/shards.txt.
