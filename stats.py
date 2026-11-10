@@ -86,3 +86,15 @@ def geometric_mean(values):
     if any(v <= 0 for v in values):
         raise ValueError("geometric_mean() requires positive values")
     return math.exp(sum(math.log(v) for v in values) / len(values))
+
+
+def trimmed_mean(values, k):
+    """Return the mean once the k smallest and k largest values are left out."""
+    if isinstance(k, bool) or not isinstance(k, int) or k < 0:
+        raise ValueError("trimmed_mean() k must be a whole number, 0 or more")
+    ordered = sorted(values)
+    if not ordered:
+        raise ValueError("trimmed_mean() arg is an empty sequence")
+    if len(ordered) <= 2 * k:
+        raise ValueError("trimmed_mean() would leave no values")
+    return mean(ordered[k:len(ordered) - k])

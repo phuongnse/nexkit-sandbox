@@ -1,6 +1,6 @@
 import unittest
 
-from stats import geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, variance
+from stats import geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -118,6 +118,29 @@ class StatsTests(unittest.TestCase):
         for bad in ([1, 0], [2, -3]):
             with self.assertRaises(ValueError):
                 geometric_mean(bad)
+
+    def test_trimmed_mean(self):
+        self.assertEqual(trimmed_mean([1, 2, 3, 4, 100], 1), 3.0)
+        self.assertEqual(trimmed_mean([1, 2, 3, 4], 0), 2.5)
+
+    def test_trimmed_mean_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            trimmed_mean([], 0)
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_trimmed_mean_nothing_left(self):
+        for values, k in (([1, 2, 3, 4], 2), ([1, 2, 3], 2), ([1], 1)):
+            with self.assertRaises(ValueError):
+                trimmed_mean(values, k)
+
+    def test_trimmed_mean_bad_k(self):
+        for bad in (-1, 1.5, 1.0, True):
+            with self.assertRaises(ValueError):
+                trimmed_mean([1, 2, 3, 4, 5], bad)
+
+    def test_trimmed_mean_unsorted_and_generator(self):
+        self.assertEqual(trimmed_mean([100, 3, 1, 4, 2], 1), 3.0)
+        self.assertEqual(trimmed_mean((x for x in [100, 3, 1, 4, 2]), 1), 3.0)
 
 
 if __name__ == "__main__":
