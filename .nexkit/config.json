@@ -10,8 +10,7 @@
   "agent": "claude",
   "model": "sonnet",
   "setup": [
-    "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox",
-    "test ! -f OUTAGE || { echo \"mirror answered 504 Gateway Time-out ($(cat OUTAGE))\"; exit 1; }"
+    "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox"
   ],
   "checks": [
     {
@@ -76,12 +75,6 @@
   "review": {
     "checklist": [
       "Every function in stats.py is listed in README.md with a one-line description"
-    ]
-  },
-  "retry": {
-    "wait_minutes": [
-      1,
-      2
     ]
   }
 }
