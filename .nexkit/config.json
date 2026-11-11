@@ -79,8 +79,7 @@
   },
   "evidence": {
     "artifacts": [
-      "test-results",
-      "a*b"
+      "test-results-*"
     ]
   }
 }
