@@ -1,6 +1,6 @@
 import unittest
 
-from stats import geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import count_above, geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -141,6 +141,18 @@ class StatsTests(unittest.TestCase):
     def test_trimmed_mean_unsorted_and_generator(self):
         self.assertEqual(trimmed_mean([100, 3, 1, 4, 2], 1), 3.0)
         self.assertEqual(trimmed_mean((x for x in [100, 3, 1, 4, 2]), 1), 3.0)
+
+    def test_count_above(self):
+        self.assertEqual(count_above([1, 5, 7], 4), 2)
+
+    def test_count_above_empty(self):
+        self.assertEqual(count_above([], 4), 0)
+
+    def test_count_above_equal_not_counted(self):
+        self.assertEqual(count_above([4, 4, 5], 4), 1)
+
+    def test_count_above_generator(self):
+        self.assertEqual(count_above((x for x in [1, 5, 7]), 4), 2)
 
 
 if __name__ == "__main__":
