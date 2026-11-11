@@ -76,5 +76,11 @@
     "checklist": [
       "Every function in stats.py is listed in README.md with a one-line description"
     ]
+  },
+  "evidence": {
+    "artifacts": [
+      "test-results",
+      "a*b"
+    ]
   }
 }
