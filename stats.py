@@ -98,3 +98,8 @@ def trimmed_mean(values, k):
     if len(ordered) <= 2 * k:
         raise ValueError("trimmed_mean() would leave no values")
     return mean(ordered[k:len(ordered) - k])
+
+
+def count_above(values, threshold):
+    """Return how many values are strictly greater than threshold."""
+    return sum(1 for v in values if v > threshold)
