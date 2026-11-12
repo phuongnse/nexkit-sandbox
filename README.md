@@ -18,3 +18,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `trimmed_mean(values, k)` - the average after leaving out the `k` smallest and `k` largest values. Raises `ValueError` if `values` is empty, `k` is not a whole number 0 or more, or no values would be left.
 - `count_above(values, threshold)` - how many values are strictly greater than `threshold` (any iterable). Returns 0 if `values` is empty.
 - `percentile(values, q)` - the value at the `q`-th percent (0 to 100) by linear interpolation between the closest ranks, as numpy does. Raises `ValueError` if `values` is empty or `q` is outside 0 to 100.
+- `describe(values)` - a dict with `count`, `mean`, `median`, `stdev` (population) and `p90` (the 90th percentile, from `percentile`). Raises `ValueError` if `values` is empty.
