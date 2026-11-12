@@ -12,25 +12,10 @@
   "setup": [
     "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox"
   ],
-  "parallel_checks": true,
   "checks": [
     {
       "name": "test",
-      "run": "python3 -m unittest discover -s tests -v",
-      "group": "fast"
-    },
-    {
-      "name": "compile",
-      "run": "python3 -m py_compile stats.py",
-      "group": "fast"
-    },
-    {
-      "name": "slow",
-      "run": "sleep 45 && echo slow done"
-    },
-    {
-      "name": "fail",
-      "run": "echo 'a deliberate failure, to see it in the summary'; exit 1"
+      "run": "python3 -m unittest discover -s tests -v"
     }
   ],
   "fix": {
