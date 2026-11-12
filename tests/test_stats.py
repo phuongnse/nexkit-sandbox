@@ -1,6 +1,6 @@
 import unittest
 
-from stats import count_above, geometric_mean, harmonic_mean, mean, median, midrange, mode, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import count_above, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -153,6 +153,35 @@ class StatsTests(unittest.TestCase):
 
     def test_count_above_generator(self):
         self.assertEqual(count_above((x for x in [1, 5, 7]), 4), 2)
+
+    def test_percentile_90(self):
+        self.assertAlmostEqual(percentile(list(range(1, 11)), 90), 9.1)
+
+    def test_percentile_unsorted_equals_sorted(self):
+        self.assertEqual(percentile([5, 1, 4, 2, 3], 30), percentile([1, 2, 3, 4, 5], 30))
+
+    def test_percentile_single_value(self):
+        self.assertEqual(percentile([7], 42), 7)
+
+    def test_percentile_extremes(self):
+        self.assertEqual(percentile([3, 9, 1], 0), 1)
+        self.assertEqual(percentile([3, 9, 1], 100), 9)
+
+    def test_percentile_median(self):
+        self.assertEqual(percentile([4, 1, 3, 2], 50), median([4, 1, 3, 2]))
+
+    def test_percentile_generator(self):
+        self.assertAlmostEqual(percentile((x for x in range(1, 11)), 90), 9.1)
+
+    def test_percentile_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            percentile([], 50)
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_percentile_q_out_of_range(self):
+        for q in (-1, 101, float("nan")):
+            with self.assertRaises(ValueError):
+                percentile([1, 2, 3], q)
 
 
 if __name__ == "__main__":
