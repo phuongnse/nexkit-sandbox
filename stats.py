@@ -116,3 +116,17 @@ def percentile(values, q):
     lo = math.floor(rank)
     hi = min(lo + 1, len(ordered) - 1)
     return ordered[lo] + (ordered[hi] - ordered[lo]) * (rank - lo)
+
+
+def describe(values):
+    """Return a dict with count, mean, median, stdev (population) and p90 of the values."""
+    ordered = list(values)
+    if not ordered:
+        raise ValueError("describe() arg is an empty sequence")
+    return {
+        "count": len(ordered),
+        "mean": mean(ordered),
+        "median": median(ordered),
+        "stdev": stdev(ordered),
+        "p90": percentile(ordered, 90),
+    }

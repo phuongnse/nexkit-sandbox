@@ -1,6 +1,6 @@
 import unittest
 
-from stats import count_above, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import count_above, describe, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -182,6 +182,27 @@ class StatsTests(unittest.TestCase):
         for q in (-1, 101, float("nan")):
             with self.assertRaises(ValueError):
                 percentile([1, 2, 3], q)
+
+    def test_describe(self):
+        result = describe(list(range(1, 11)))
+        self.assertEqual(result["count"], 10)
+        self.assertAlmostEqual(result["mean"], 5.5)
+        self.assertAlmostEqual(result["median"], 5.5)
+        self.assertAlmostEqual(result["p90"], 9.1)
+
+    def test_describe_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            describe([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_describe_keys_and_stdev(self):
+        values = [2, 4, 4, 4, 5, 5, 7, 9]
+        result = describe(values)
+        self.assertEqual(set(result), {"count", "mean", "median", "stdev", "p90"})
+        self.assertEqual(result["stdev"], stdev(values))
+
+    def test_describe_generator(self):
+        self.assertEqual(describe(x for x in range(1, 11))["count"], 10)
 
 
 if __name__ == "__main__":
