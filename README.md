@@ -17,3 +17,5 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.
 - `trimmed_mean(values, k)` - the average after leaving out the `k` smallest and `k` largest values. Raises `ValueError` if `values` is empty, `k` is not a whole number 0 or more, or no values would be left.
 - `count_above(values, threshold)` - how many values are strictly greater than `threshold` (any iterable). Returns 0 if `values` is empty.
+
+The sandbox also tries parallel check jobs.
