@@ -103,3 +103,16 @@ def trimmed_mean(values, k):
 def count_above(values, threshold):
     """Return how many values are strictly greater than threshold."""
     return sum(1 for v in values if v > threshold)
+
+
+def percentile(values, q):
+    """Return the q-th percentile (q from 0 to 100) by linear interpolation between closest ranks."""
+    if not 0 <= q <= 100:
+        raise ValueError("percentile() q must be between 0 and 100")
+    ordered = sorted(values)
+    if not ordered:
+        raise ValueError("percentile() arg is an empty sequence")
+    rank = (len(ordered) - 1) * q / 100
+    lo = math.floor(rank)
+    hi = min(lo + 1, len(ordered) - 1)
+    return ordered[lo] + (ordered[hi] - ordered[lo]) * (rank - lo)
