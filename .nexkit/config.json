@@ -74,7 +74,15 @@
   },
   "review": {
     "checklist": [
-      "Every function in stats.py is listed in README.md with a one-line description"
+      "Every function in stats.py is listed in README.md with a one-line description",
+      {
+        "text": "The change adds no new module file: every function lives in stats.py, as the README's Functions list shows, so that the package stays a single module that one import loads, and callers never need to learn about another file to use it.",
+        "person": true
+      },
+      {
+        "text": "Every public function stays pure: it reads no file, no environment variable and no clock, and writes nothing anywhere, so that each result depends only on its arguments, as callers rely on when they cache results or run them in parallel.",
+        "person": true
+      }
     ]
   }
 }
