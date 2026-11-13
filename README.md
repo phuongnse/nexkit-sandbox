@@ -12,6 +12,7 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `variance(values)` - population variance: the mean of the squared differences from the mean. Raises `ValueError` if `values` is empty.
 - `midrange(values)` - the average of the smallest and largest value. Raises `ValueError` if `values` is empty.
 - `stdev(values)` - population standard deviation: the square root of the variance. Raises `ValueError` if `values` is empty.
+- `coefficient_of_variation(values)` - the population standard deviation divided by the mean (any iterable). Raises `ValueError` if `values` is empty or its mean is 0.
 - `sum_of_squares(values)` - the sum of each value squared. Raises `ValueError` if `values` is empty.
 - `harmonic_mean(values)` - the number of values divided by the sum of their reciprocals. Raises `ValueError` if `values` is empty or any value is not positive.
 - `geometric_mean(values)` - the n-th root of the product of the values. Raises `ValueError` if `values` is empty or any value is not positive.
