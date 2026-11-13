@@ -1,9 +1,25 @@
 import unittest
 
-from stats import count_above, describe, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, count_above, describe, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
+    def test_coefficient_of_variation(self):
+        self.assertEqual(coefficient_of_variation([2, 4, 4, 4, 5, 5, 7, 9]), 0.4)
+
+    def test_coefficient_of_variation_empty(self):
+        with self.assertRaises(ValueError) as ctx:
+            coefficient_of_variation([])
+        self.assertIn("empty", str(ctx.exception))
+
+    def test_coefficient_of_variation_zero_mean(self):
+        for values in ([-1, 1], [0, 0]):
+            with self.assertRaises(ValueError):
+                coefficient_of_variation(values)
+
+    def test_coefficient_of_variation_generator(self):
+        self.assertEqual(coefficient_of_variation(x for x in [2, 4, 4, 4, 5, 5, 7, 9]), 0.4)
+
     def test_mean(self):
         self.assertEqual(mean([1, 2, 3, 4]), 2.5)
 

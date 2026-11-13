@@ -63,6 +63,17 @@ def stdev(values):
     return math.sqrt(variance(values))
 
 
+def coefficient_of_variation(values):
+    """Return the population standard deviation divided by the mean."""
+    values = list(values)
+    if not values:
+        raise ValueError("coefficient_of_variation() arg is an empty sequence")
+    m = mean(values)
+    if m == 0:
+        raise ValueError("coefficient_of_variation() mean is 0")
+    return stdev(values) / m
+
+
 def sum_of_squares(values):
     """Return the sum of each value squared."""
     if not values:
