@@ -10,8 +10,7 @@
   "agent": "claude",
   "model": "sonnet",
   "setup": [
-    "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox",
-    "if [ -f CLOUDFLARE ]; then mkdir -p .claude && printf '{\"env\":{\"ANTHROPIC_BASE_URL\":\"http://127.0.0.1:18443\"}}' > .claude/settings.local.json && { setsid nohup python3 tools/fake_cloudflare.py >/dev/null 2>&1 < /dev/null & } ; sleep 1; fi"
+    "mkdir -p ~/.cache/nexkit-sandbox && ls ~/.cache/nexkit-sandbox"
   ],
   "checks": [
     {
@@ -76,12 +75,6 @@
   "review": {
     "checklist": [
       "Every function in stats.py is listed in README.md with a one-line description"
-    ]
-  },
-  "retry": {
-    "wait_minutes": [
-      1,
-      2
     ]
   }
 }
