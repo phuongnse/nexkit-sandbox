@@ -70,8 +70,7 @@
       "on-hold": {
         "hold": true
       }
-    },
-    "max_parallel": 1
+    }
   },
   "review": {
     "checklist": [
