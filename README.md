@@ -27,3 +27,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `mean_of_squares(values)` - the mean of the squares of the values (any iterable). Raises `ValueError` if `values` is empty.
 - `quartic_mean(values)` - the fourth root of the mean of the fourth powers (any iterable). Raises `ValueError` if `values` is empty.
 - `power_mean(values, p)` - the p-th root of the mean of `v ** p` (any iterable). Raises `ValueError` if `values` is empty or `p` is 0.
+- `mean_of_cubes(values)` - the mean of the cubes of the values (any iterable). Raises `ValueError` if `values` is empty.
