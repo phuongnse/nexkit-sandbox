@@ -1,8 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
-
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -254,6 +253,23 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             lehmer_mean([], 2)
         self.assertEqual(str(ctx.exception), "lehmer_mean() needs at least one value [L1]")
+
+    def test_cubic_mean_rule_d(self):
+        self.assertAlmostEqual(cubic_mean([2, 2, 2]), 2)
+        self.assertAlmostEqual(cubic_mean([1, 2, 3]), 2.2894284851066637)
+
+    def test_cubic_mean_negative_rule_d(self):
+        result = cubic_mean([-2, -2])
+        self.assertIsInstance(result, float)
+        self.assertAlmostEqual(result, -2)
+
+    def test_cubic_mean_generator_rule_d(self):
+        self.assertAlmostEqual(cubic_mean(v for v in [2, 2, 2]), 2)
+
+    def test_cubic_mean_empty_rule_d(self):
+        with self.assertRaises(ValueError) as ctx:
+            cubic_mean([])
+        self.assertEqual(str(ctx.exception), "cubic_mean() needs at least one value [L1]")
 
 
 if __name__ == "__main__":
