@@ -190,3 +190,11 @@ def mean_of_squares(values):
     if not values:
         raise ValueError("mean_of_squares(): no values [L3]")
     return sum(v ** 2 for v in values) / len(values)
+
+
+def quartic_mean(values):
+    """Return the fourth root of the mean of the fourth powers. [I4]"""
+    values = list(values)
+    if not values:
+        raise ValueError("quartic_mean(): no values [L3]")
+    return (sum(v ** 4 for v in values) / len(values)) ** 0.25
