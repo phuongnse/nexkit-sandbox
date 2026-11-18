@@ -208,3 +208,11 @@ def power_mean(values, p):
     if p == 0:
         raise ValueError("power_mean(): p must not be 0")
     return (sum(v ** p for v in values) / len(values)) ** (1 / p)
+
+
+def mean_of_fourth_powers(values):
+    """Return the mean of the fourth powers of the values."""
+    values = list(values)
+    if not values:
+        raise ValueError("mean_of_fourth_powers(): empty [L6]")
+    return sum(v ** 4 for v in values) / len(values)
