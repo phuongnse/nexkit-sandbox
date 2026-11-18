@@ -190,3 +190,13 @@ def mean_of_squares(values):
     if not values:
         raise ValueError("mean_of_squares(): no values [L3]")
     return sum(v ** 2 for v in values) / len(values)
+
+
+def power_mean(values, p):
+    """Return the p-th root of the mean of v ** p. [I4]"""
+    values = list(values)
+    if not values:
+        raise ValueError("power_mean(): no values [L3]")
+    if p == 0:
+        raise ValueError("power_mean(): p must not be 0")
+    return (sum(v ** p for v in values) / len(values)) ** (1 / p)
