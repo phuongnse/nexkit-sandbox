@@ -210,6 +210,14 @@ def power_mean(values, p):
     return (sum(v ** p for v in values) / len(values)) ** (1 / p)
 
 
+def mean_of_cubes(values):
+    """Return the mean of the cubes of the values."""
+    values = list(values)
+    if not values:
+        raise ValueError("mean_of_cubes(): empty [L6]")
+    return sum(v ** 3 for v in values) / len(values)
+
+
 def mean_of_fourth_powers(values):
     """Return the mean of the fourth powers of the values."""
     values = list(values)
