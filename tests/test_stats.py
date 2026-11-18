@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_squares, median, midrange, mode, percentile, power_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_squares, median, midrange, mode, percentile, power_mean, quartic_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -287,6 +287,24 @@ class StatsTests(unittest.TestCase):
 
     def test_mean_of_squares_docstring_d5(self):
         self.assertTrue(mean_of_squares.__doc__.splitlines()[0].endswith(" [I4]"))
+
+    def test_quartic_mean_values_d5(self):
+        self.assertAlmostEqual(quartic_mean([2, 2, 2]), 2)
+        self.assertAlmostEqual(quartic_mean([1, 2, 3]), (98 / 3) ** 0.25)
+
+    def test_quartic_mean_negative_d5(self):
+        self.assertAlmostEqual(quartic_mean([-2, -2]), 2)
+
+    def test_quartic_mean_generator_d5(self):
+        self.assertAlmostEqual(quartic_mean(v for v in [1, 2, 3]), quartic_mean([1, 2, 3]))
+
+    def test_quartic_mean_empty_d5(self):
+        with self.assertRaises(ValueError) as ctx:
+            quartic_mean([])
+        self.assertEqual(str(ctx.exception), "quartic_mean(): no values [L3]")
+
+    def test_quartic_mean_docstring_d5(self):
+        self.assertTrue(quartic_mean.__doc__.splitlines()[0].endswith(" [I4]"))
 
     def test_power_mean_values_d5(self):
         self.assertAlmostEqual(power_mean([1, 2, 3], 1), 2)

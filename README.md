@@ -25,4 +25,5 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `lehmer_mean(values, p)` - the sum of `v ** p` divided by the sum of `v ** (p - 1)`. Raises `ValueError` if `values` is empty.
 - `cubic_mean(values)` - the cube root of the mean of the cubes (any iterable). Raises `ValueError` if `values` is empty.
 - `mean_of_squares(values)` - the mean of the squares of the values (any iterable). Raises `ValueError` if `values` is empty.
+- `quartic_mean(values)` - the fourth root of the mean of the fourth powers (any iterable). Raises `ValueError` if `values` is empty.
 - `power_mean(values, p)` - the p-th root of the mean of `v ** p` (any iterable). Raises `ValueError` if `values` is empty or `p` is 0.
