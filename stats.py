@@ -143,6 +143,17 @@ def describe(values):
     }
 
 
+def root_mean_square(values):
+    """Return the square root of the mean of the squares of the values.
+
+    Rule: L2
+    """
+    values = list(values)
+    if not values:
+        raise ValueError("root_mean_square() needs at least one value [L1]")
+    return math.sqrt(sum(v ** 2 for v in values) / len(values))
+
+
 def contraharmonic_mean(values):
     """Return the sum of the squares divided by the sum of the values.
 

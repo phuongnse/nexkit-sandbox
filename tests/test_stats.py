@@ -1,7 +1,7 @@
+import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, spread, stdev, sum_of_squares, trimmed_mean, variance
-
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -219,6 +219,21 @@ class StatsTests(unittest.TestCase):
 
     def test_describe_generator(self):
         self.assertEqual(describe(x for x in range(1, 11))["count"], 10)
+
+    def test_root_mean_square_rule_d(self):
+        self.assertAlmostEqual(root_mean_square([1, 1, 1]), 1.0)
+        self.assertAlmostEqual(root_mean_square([3, 4]), math.sqrt(12.5))
+
+    def test_root_mean_square_negative_rule_d(self):
+        self.assertAlmostEqual(root_mean_square([-3, 4]), math.sqrt(12.5))
+
+    def test_root_mean_square_generator_rule_d(self):
+        self.assertAlmostEqual(root_mean_square(x for x in [3, 4]), math.sqrt(12.5))
+
+    def test_root_mean_square_empty_rule_d(self):
+        with self.assertRaises(ValueError) as ctx:
+            root_mean_square([])
+        self.assertEqual(str(ctx.exception), "root_mean_square() needs at least one value [L1]")
 
     def test_contraharmonic_mean_values_rule_d(self):
         self.assertAlmostEqual(contraharmonic_mean([1, 2, 3]), 14 / 6)
