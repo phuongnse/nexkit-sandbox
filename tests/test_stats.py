@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_squares, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -270,6 +270,23 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             cubic_mean([])
         self.assertEqual(str(ctx.exception), "cubic_mean() needs at least one value [L1]")
+
+    def test_mean_of_squares_values_d5(self):
+        self.assertAlmostEqual(mean_of_squares([1, 2, 3]), 14 / 3)
+
+    def test_mean_of_squares_negative_d5(self):
+        self.assertEqual(mean_of_squares([-2, 2]), 4)
+
+    def test_mean_of_squares_generator_d5(self):
+        self.assertEqual(mean_of_squares(v for v in [1, 2, 3]), mean_of_squares([1, 2, 3]))
+
+    def test_mean_of_squares_empty_d5(self):
+        with self.assertRaises(ValueError) as ctx:
+            mean_of_squares([])
+        self.assertEqual(str(ctx.exception), "mean_of_squares(): no values [L3]")
+
+    def test_mean_of_squares_docstring_d5(self):
+        self.assertTrue(mean_of_squares.__doc__.splitlines()[0].endswith(" [I4]"))
 
 
 if __name__ == "__main__":

@@ -182,3 +182,11 @@ def cubic_mean(values):
         raise ValueError("cubic_mean() needs at least one value [L1]")
     m = sum(v ** 3 for v in values) / len(values)
     return math.copysign(abs(m) ** (1 / 3), m)
+
+
+def mean_of_squares(values):
+    """Return the mean of the squares of the values. [I4]"""
+    values = list(values)
+    if not values:
+        raise ValueError("mean_of_squares(): no values [L3]")
+    return sum(v ** 2 for v in values) / len(values)
