@@ -24,3 +24,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `contraharmonic_mean(values)` - the sum of the squares divided by the sum of the values. Raises `ValueError` if `values` is empty.
 - `lehmer_mean(values, p)` - the sum of `v ** p` divided by the sum of `v ** (p - 1)`. Raises `ValueError` if `values` is empty.
 - `cubic_mean(values)` - the cube root of the mean of the cubes (any iterable). Raises `ValueError` if `values` is empty.
+- `mean_of_squares(values)` - the mean of the squares of the values (any iterable). Raises `ValueError` if `values` is empty.
