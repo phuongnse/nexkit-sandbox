@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_squares, median, midrange, mode, percentile, quartic_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_squares, median, midrange, mode, percentile, power_mean, quartic_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -305,6 +305,26 @@ class StatsTests(unittest.TestCase):
 
     def test_quartic_mean_docstring_d5(self):
         self.assertTrue(quartic_mean.__doc__.splitlines()[0].endswith(" [I4]"))
+
+    def test_power_mean_values_d5(self):
+        self.assertAlmostEqual(power_mean([1, 2, 3], 1), 2)
+        self.assertAlmostEqual(power_mean([3, 4], 2), math.sqrt(12.5))
+        self.assertAlmostEqual(power_mean([1, 4, 4], -1), 2.0)
+
+    def test_power_mean_generator_d5(self):
+        self.assertEqual(power_mean((v for v in [1, 2, 3]), 3), power_mean([1, 2, 3], 3))
+
+    def test_power_mean_empty_d5(self):
+        with self.assertRaises(ValueError) as ctx:
+            power_mean([], 2)
+        self.assertEqual(str(ctx.exception), "power_mean(): no values [L3]")
+
+    def test_power_mean_zero_p_d5(self):
+        with self.assertRaises(ValueError):
+            power_mean([1, 2], 0)
+
+    def test_power_mean_docstring_d5(self):
+        self.assertTrue(power_mean.__doc__.splitlines()[0].endswith(" [I4]"))
 
 
 if __name__ == "__main__":
