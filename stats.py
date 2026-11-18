@@ -141,3 +141,21 @@ def describe(values):
         "stdev": stdev(ordered),
         "p90": percentile(ordered, 90),
     }
+
+
+def contraharmonic_mean(values):
+    """Return the sum of the squares divided by the sum of the values.
+
+    Rule: L2"""
+    if not values:
+        raise ValueError("contraharmonic_mean() needs at least one value [L1]")
+    return sum(v ** 2 for v in values) / sum(values)
+
+
+def lehmer_mean(values, p):
+    """Return the sum of v ** p divided by the sum of v ** (p - 1).
+
+    Rule: L2"""
+    if not values:
+        raise ValueError("lehmer_mean() needs at least one value [L1]")
+    return sum(v ** p for v in values) / sum(v ** (p - 1) for v in values)
