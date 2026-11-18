@@ -159,3 +159,15 @@ def lehmer_mean(values, p):
     if not values:
         raise ValueError("lehmer_mean() needs at least one value [L1]")
     return sum(v ** p for v in values) / sum(v ** (p - 1) for v in values)
+
+
+def cubic_mean(values):
+    """Return the cube root of the mean of the cubes.
+
+    Rule: L2
+    """
+    values = list(values)
+    if not values:
+        raise ValueError("cubic_mean() needs at least one value [L1]")
+    m = sum(v ** 3 for v in values) / len(values)
+    return math.copysign(abs(m) ** (1 / 3), m)
