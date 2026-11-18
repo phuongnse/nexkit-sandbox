@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, count_above, describe, geometric_mean, harmonic_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, median, midrange, mode, percentile, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 
 class StatsTests(unittest.TestCase):
@@ -235,6 +235,25 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             root_mean_square([])
         self.assertEqual(str(ctx.exception), "root_mean_square() needs at least one value [L1]")
+
+    def test_contraharmonic_mean_values_rule_d(self):
+        self.assertAlmostEqual(contraharmonic_mean([1, 2, 3]), 14 / 6)
+        self.assertAlmostEqual(contraharmonic_mean([2, 4]), 20 / 6)
+
+    def test_contraharmonic_mean_empty_rule_d(self):
+        with self.assertRaises(ValueError) as ctx:
+            contraharmonic_mean([])
+        self.assertEqual(str(ctx.exception), "contraharmonic_mean() needs at least one value [L1]")
+
+    def test_lehmer_mean_values_rule_d(self):
+        self.assertAlmostEqual(lehmer_mean([1, 2, 3], 2), contraharmonic_mean([1, 2, 3]))
+        self.assertAlmostEqual(lehmer_mean([1, 2, 3], 1), mean([1, 2, 3]))
+        self.assertAlmostEqual(lehmer_mean([1, 2, 3], 3), 36 / 14)
+
+    def test_lehmer_mean_empty_rule_d(self):
+        with self.assertRaises(ValueError) as ctx:
+            lehmer_mean([], 2)
+        self.assertEqual(str(ctx.exception), "lehmer_mean() needs at least one value [L1]")
 
 
 if __name__ == "__main__":

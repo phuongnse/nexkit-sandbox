@@ -21,3 +21,5 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `percentile(values, q)` - the value at the `q`-th percent (0 to 100) by linear interpolation between the closest ranks, as numpy does. Raises `ValueError` if `values` is empty or `q` is outside 0 to 100.
 - `describe(values)` - a dict with `count`, `mean`, `median`, `stdev` (population) and `p90` (the 90th percentile, from `percentile`). Raises `ValueError` if `values` is empty.
 - `root_mean_square(values)` - the square root of the mean of the squares (any iterable). Raises `ValueError` if `values` is empty.
+- `contraharmonic_mean(values)` - the sum of the squares divided by the sum of the values. Raises `ValueError` if `values` is empty.
+- `lehmer_mean(values, p)` - the sum of `v ** p` divided by the sum of `v ** (p - 1)`. Raises `ValueError` if `values` is empty.
