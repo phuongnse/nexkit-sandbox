@@ -29,3 +29,4 @@ Run the tests with `python3 -m unittest discover -s tests -v`.
 - `power_mean(values, p)` - the p-th root of the mean of `v ** p` (any iterable). Raises `ValueError` if `values` is empty or `p` is 0.
 - `mean_of_fourth_powers(values)` - the mean of the fourth powers of the values (any iterable). Raises `ValueError` if `values` is empty.
 - `mean_of_cubes(values)` - the mean of the cubes of the values (any iterable). Raises `ValueError` if `values` is empty.
+- `mean_of_fifth_powers(values)` - the mean of the fifth powers of the values (any iterable). Raises `ValueError` if `values` is empty.

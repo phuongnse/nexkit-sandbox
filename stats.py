@@ -224,3 +224,11 @@ def mean_of_fourth_powers(values):
     if not values:
         raise ValueError("mean_of_fourth_powers(): empty [L6]")
     return sum(v ** 4 for v in values) / len(values)
+
+
+def mean_of_fifth_powers(values):
+    """Return the mean of the fifth powers of the values."""
+    values = list(values)
+    if not values:
+        raise ValueError("mean_of_fifth_powers() arg is an empty sequence")
+    return sum(v ** 5 for v in values) / len(values)
