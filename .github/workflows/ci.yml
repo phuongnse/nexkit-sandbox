@@ -1,3 +1,4 @@
+# CI of the sandbox.
 name: CI
 
 on:
