@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_cubes, mean_of_fourth_powers, mean_of_squares, median, midrange, mode, percentile, power_mean, quartic_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
+from stats import coefficient_of_variation, contraharmonic_mean, count_above, cubic_mean, describe, geometric_mean, harmonic_mean, lehmer_mean, mean, mean_of_cubes, mean_of_fifth_powers, mean_of_fourth_powers, mean_of_squares, median, midrange, mode, percentile, power_mean, quartic_mean, root_mean_square, spread, stdev, sum_of_squares, trimmed_mean, variance
 
 class StatsTests(unittest.TestCase):
     def test_coefficient_of_variation(self):
@@ -353,6 +353,13 @@ class StatsTests(unittest.TestCase):
         with self.assertRaises(ValueError) as ctx:
             mean_of_fourth_powers([])
         self.assertEqual(str(ctx.exception), "mean_of_fourth_powers(): empty [L6]")
+
+    def test_mean_of_fifth_powers(self):
+        self.assertEqual(mean_of_fifth_powers([1, 2]), 16.5)
+
+    def test_mean_of_fifth_powers_empty(self):
+        with self.assertRaises(ValueError):
+            mean_of_fifth_powers([])
 
 
 if __name__ == "__main__":
