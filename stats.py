@@ -226,6 +226,7 @@ def mean_of_fourth_powers(values):
     return sum(v ** 4 for v in values) / len(values)
 
 
+# Mean of v ** 5 over the values, like mean_of_fourth_powers.
 def mean_of_fifth_powers(values):
     """Return the mean of the fifth powers of the values."""
     values = list(values)
